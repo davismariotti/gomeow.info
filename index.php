@@ -5,6 +5,6 @@
 	</head>
 	<body>
 		<h1>My first website!</h1>
-		<p>Brought to you by gomeow!</p>
+		<p>Brought to you by gomeow! He is awesome!</p>
 	</body>
 </html>
