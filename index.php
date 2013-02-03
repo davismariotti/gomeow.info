@@ -1,10 +1,18 @@
+<?php
+	require("functions.php"); 
+?>
 <html>
 	<head>
 		<title>GOMEOW</title>
-		<link rel="stylesheet" type="text/css" href="css/main.css">
+		<?php headIncludes(); ?>
 	</head>
 	<body>
-		<h1>My first website!</h1>
-		<p>Brought to you by gomeow! He is awesome!</p>
+		<?php navBar(); ?>
+		<div class="container">
+			<div class="well">
+				<h1>My first website!</h1>
+				<p>Brought to you by gomeow! He is awesome!</p>
+			</div>
+		</div>
 	</body>
 </html>
