@@ -6,7 +6,18 @@
 }
 
 .navbar-inner {
-	background-color: #294A29;
+	background-color: #197A3A;
 	background-image: none;
 	background-repeat: no-repeat;
+}
+
+body {
+	background: #447544; /* Old browsers */
+	background: -moz-linear-gradient(top, #447544 0%, #6bba70 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#447544), color-stop(100%,#6bba70)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #447544 0%,#6bba70 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #447544 0%,#6bba70 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #447544 0%,#6bba70 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #447544 0%,#6bba70 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#447544', endColorstr='#6bba70',GradientType=0 ); /* IE6-9 */
 }
