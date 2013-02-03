@@ -11,7 +11,7 @@
 		<div class="container">
 			<div class="well">
 				<h1>My first website!</h1>
-				<p>Brought to you by gomeow! He is awesome!</p>
+				<p>Brought to you by gomeow! He is not awesome!</p>
 			</div>
 		</div>
 	</body>
