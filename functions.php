@@ -3,8 +3,8 @@
 function headIncludes() {
 	?>
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<link href="css/main.css?" rel="stylesheet">
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/main.css" rel="stylesheet">
 	<?php
 }
 
