@@ -15,8 +15,10 @@ function navBar() {
 			<a class="brand" href="index.php">Gomeow</a>
 			<ul class="nav">
 				<li class="active"><a href="index.php">Home</a></li>
+				<li class="divider-vertical"></li>
 				<li><a href="plugins.php">My Plugins</a></li>
-				<li><a href="#">Link</a></li>
+				<li class="divider-vertical"></li>
+				<li><a href="#">Put other Link here</a></li>
 			</ul>
 		</div>
 	</div>
