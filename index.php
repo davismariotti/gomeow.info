@@ -9,12 +9,26 @@
 		return $ex;
 	}
 }
+
+function getClientIP () {
+ if (isset ($_SERVER['HTTP_X_FORWARDED_FOR'])){
+  $clientIP = $_SERVER['HTTP_X_FORWARDED_FOR'];
+ }
+ elseif (isset ($_SERVER['HTTP_X_REAL_IP'])){
+  $clientIP = $_SERVER['HTTP_X_REAL_IP'];
+ }
+ else {
+  $clientIP = $_SERVER['REMOTE_ADDR'];
+ }
+ return $clientIP;
+}
+
 $visits = 1;
 $db = connectDB($dbUser, $dbPass, $dbName);
 if ($db instanceof PDOException) {
 	die ($db->getMessage());
 }
-$ip = @$REMOTE_ADDR;
+$ip = getClientIP();
 $sql = "SELECT * FROM `IPS` WHERE `IP` = :ip LIMIT 1"; 
 $stmt = $db->prepare($sql);
 $stmt->bindParam(':ip', $ip);
