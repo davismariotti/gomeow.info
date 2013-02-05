@@ -14,7 +14,7 @@ $db = connectDB($dbUser, $dbPass, $dbName);
 if ($db instanceof PDOException) {
 	die ($db->getMessage());
 }
-$ip = $_SERVER['REMOTE_ADDR'];
+$ip = @$REMOTE_ADDR;
 $sql = "SELECT * FROM `IPS` WHERE `IP` = :ip LIMIT 1"; 
 $stmt = $db->prepare($sql);
 $stmt->bindParam(':ip', $ip);
