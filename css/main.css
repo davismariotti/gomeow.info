@@ -10,6 +10,10 @@ body {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#447544', endColorstr='#6bba70',GradientType=0 ); /* IE6-9 */
 }
 
+.navbar .nav > li > a:focus, .navbar .nav > li > a:hover {
+    color: #ffffff; /* Remove annoying hover to black which is unreadable */
+}
+
 .container {
 	color: #479147;
 	height: 300px;
