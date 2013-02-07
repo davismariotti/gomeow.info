@@ -6,7 +6,12 @@ body {
 	background: -o-linear-gradient(top, #447544 0%,#6bba70 100%); /* Opera 11.10+ */
 	background: -ms-linear-gradient(top, #447544 0%,#6bba70 100%); /* IE10+ */
 	background: linear-gradient(to bottom, #447544 0%,#6bba70 100%); /* W3C */
+	height: 100%;
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#447544', endColorstr='#6bba70',GradientType=0 ); /* IE6-9 */
+}
+
+.navbar .nav > li > a:focus, .navbar .nav > li > a:hover {
+    color: #ffffff; /* Remove annoying hover to black which is unreadable */
 }
 
 .container {
@@ -34,5 +39,11 @@ body {
 }
 
 .img-gomeow {
-	float: right;
+	position: absolute;
+	right: 20px;
+}
+
+.mainContent {
+	min-height: 200px; 
+	position: relative;
 }
