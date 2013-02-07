@@ -37,3 +37,8 @@ body {
 	position: absolute;
 	right: 20px;
 }
+
+.mainContent {
+	min-height: 200px; 
+	position: relative;
+}
