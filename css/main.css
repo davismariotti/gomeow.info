@@ -34,5 +34,6 @@ body {
 }
 
 .img-gomeow {
-	float: right;
+	position: absolute;
+	right: 20px;
 }
