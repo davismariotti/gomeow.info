@@ -47,3 +47,7 @@ body {
 	min-height: 200px; 
 	position: relative;
 }
+
+.applyForm {
+	text-align: center;
+}
