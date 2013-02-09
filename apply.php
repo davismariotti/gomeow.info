@@ -16,6 +16,11 @@
 						<legend>Apply</legend>
 						<label>Username: </label>
 						<input type="text" placeholder="Minecraft Username" />
+						<label>Link to Bukkit Profile:</label>
+						<input type="text" placeholder="Bukkit Link" />
+						<label>Now write a paragraph about how you won't grief</label>
+						<textarea></textarea>
+						<button type="submit" class="btn btn-success">Submit</button>
 					</fieldset>
 				</form>
 			</div>
