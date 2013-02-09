@@ -97,9 +97,8 @@ else {
 
 				<h1>GOMEOW!</h1>
 				<p>I am gomeow. Inspector gomeow.</p>
-				<p>You have visited me &lt;Removed&gt;<?php /*echo $visits */ ?> times!</p>
-				<p>This site has had &lt;Removed&gt;<?php /*echo $TotalHits;*/ ?> total hits with <?php echo $TotalUniqueVisits; ?> unique visits!</p>
-				<p>The view counter has been temporarily removed as it was getting abused. -gomeow</p>
+				<p>You have visited me <?php echo $visits ?> times!</p>
+				<p>This site has had <?php echo $TotalHits; ?> total hits with <?php echo $TotalUniqueVisits; ?> unique visits!</p>
 			</div>
 		</div>
 	</body>
