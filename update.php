@@ -1,10 +1,14 @@
 <?php
+include("../private/config.php");
 $ip = $_SERVER['REMOTE_ADDR'];
 $auth = false;
 error_reporting(E_ERROR);
 //Only allow github/staff to build
 if ($ip == "207.97.227.253" || $ip == "50.57.128.197" || $ip == "108.171.174.178" || $ip == "76.126.30.120" || $ip == "50.57.231.61") {
 $auth = true;
+}
+if($_GET['pw'] == $buildPW) {
+	$auth = true;
 }
 if (!$auth) {
 file_put_contents("logs/gitlog.txt", "\n" . date("Y-m-d H:i:s") . ": Unauthorised deploy attempt from $ip", FILE_APPEND | LOCK_EX);
