@@ -10,7 +10,7 @@
 	<body>
 		<?php navBar(); ?>
 		<div class="container">
-			<div class="well mainContent applyForm">
+			<div class="well mainContent">
 				<img src="http://forums.bukkit.org/logo.png"></img>
 				<h3>Community Server</h6>
 				<h5>Conditions:<h5>
@@ -19,7 +19,7 @@
 					<li>plugin amount goes here plugins</li>
 					<li>donation amount goes here amount</li>
 				</ul>
-				<form action="applyScript.php" method="POST">
+				<form class="applyForm" action="applyScript.php" method="POST">
 					<fieldset>
 						<legend>Apply</legend>
 						<label>Username: </label>
