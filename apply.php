@@ -13,13 +13,20 @@
 			<div class="well mainContent applyForm">
 				<form action="applyScript.php" method="POST">
 					<fieldset>
+						<img src="http://forums.bukkit.org/logo.png"></img>
+						<h3>Community Server</h6>
+						<h6>Conditions:<h6>
+						<ul>
+							<li>post amount goes here posts</li>
+							<li>plugin amount goes here plugins</li>
+							<li>donation amount goes here amount</li>
+						</ul>
 						<legend>Apply</legend>
 						<label>Username: </label>
 						<input type="text" placeholder="Minecraft Username" />
 						<label>Link to Bukkit Profile:</label>
 						<input type="text" placeholder="Bukkit Link" />
-						<label>Now write a paragraph about how you won't grief</label>
-						<textarea></textarea>
+						</br>
 						<button type="submit" class="btn btn-success">Submit</button>
 					</fieldset>
 				</form>
