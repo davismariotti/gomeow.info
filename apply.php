@@ -4,7 +4,7 @@
 
 <html>
 	<head>
-		<title>GOMEOW</title>
+		<title>Apply for Bukkit Community Server</title>
 		<?php headIncludes(); ?>
 	</head>
 	<body>
