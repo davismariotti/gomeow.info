@@ -11,16 +11,16 @@
 		<?php navBar(); ?>
 		<div class="container">
 			<div class="well mainContent applyForm">
+				<img src="http://forums.bukkit.org/logo.png"></img>
+				<h3>Community Server</h6>
+				<h5>Conditions:<h5>
+				<ul>
+					<li>post amount goes here posts</li>
+					<li>plugin amount goes here plugins</li>
+					<li>donation amount goes here amount</li>
+				</ul>
 				<form action="applyScript.php" method="POST">
 					<fieldset>
-						<img src="http://forums.bukkit.org/logo.png"></img>
-						<h3>Community Server</h6>
-						<h6>Conditions:<h6>
-						<ul>
-							<li>post amount goes here posts</li>
-							<li>plugin amount goes here plugins</li>
-							<li>donation amount goes here amount</li>
-						</ul>
 						<legend>Apply</legend>
 						<label>Username: </label>
 						<input type="text" placeholder="Minecraft Username" />
