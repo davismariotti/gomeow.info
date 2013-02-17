@@ -13,8 +13,8 @@
 			<div class="well mainContent">
 				<div style='text-align: center;'>
 					<img src="http://forums.bukkit.org/logo.png"></img>
-				</div>
 				<h3>Community Server</h6>
+				</div>
 				<h5>Conditions:<h5>
 				<h6>Meet one of the following:</h6>
 				<ul>
