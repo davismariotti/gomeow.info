@@ -13,8 +13,6 @@
 		$result = file_get_contents($baseURL, false, $context);
 		$result = str_replace("</member>","",$result);
 		$split = explode("<member>",$result);
-		//var_dump($split);
-		//die();
 		if(strpos($split[1],"result")!==false) {
 			return null;
 		}
@@ -22,7 +20,6 @@
 		$end = str_replace("<name></name>\n<value><int>","",$end);
 		$end = str_replace("</int></value>","",$end);
 		return intval($end);
-		//echo (is_numeric($end))?'true':'false';
 	}
 	$minecraft = $_POST['minecraft'];
 	$bukkit = $_POST['bukkit'];
