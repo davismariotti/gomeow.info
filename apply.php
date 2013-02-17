@@ -16,7 +16,7 @@
 				<h5>Conditions:<h5>
 				<h6>Meet one of the following:</h6>
 				<ul>
-					<li>Have at least 500 posts on the Bukkit Forums.</li>
+					<li>Have at least 800 posts on the Bukkit Forums.</li>
 					<li>Have made at least 2 plugins.</li>
 				</ul>
 				<h6>Meet all of the following as well:</h6>
