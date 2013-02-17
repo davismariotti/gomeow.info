@@ -11,7 +11,9 @@
 		<?php navBar(); ?>
 		<div class="container">
 			<div class="well mainContent">
-				<img src="http://forums.bukkit.org/logo.png"></img>
+				<div style='text-align: center;'>
+					<img src="http://forums.bukkit.org/logo.png"></img>
+				</div>
 				<h3>Community Server</h6>
 				<h5>Conditions:<h5>
 				<h6>Meet one of the following:</h6>
