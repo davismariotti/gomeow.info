@@ -29,6 +29,8 @@
 					if($_GET['e'] == 1) { ?><div class="alert alert-error">You need to fill in your Minecraft Username!</div><?php }
 					if($_GET['e'] == 2) { ?><div class="alert alert-error">You need to fill in your Bukkit Username!</div><?php }
 					if($_GET['e'] == 3) { ?><div class="alert alert-error">Your Minecraft username must be premium!</div><?php }
+					if($_GET['e'] == 4) { ?><div class="alert alert-error">Your Bukkit username must be valid!</div><?php }
+					if($_GET['e'] == 5) { ?><div class="alert alert-error">You don't have the minimum number of posts/plugins!</div><?php }
 				?>
 				<form class="applyForm" action="applyScript.php" method="POST">
 					<fieldset>
