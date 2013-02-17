@@ -14,18 +14,29 @@
 				<img src="http://forums.bukkit.org/logo.png"></img>
 				<h3>Community Server</h6>
 				<h5>Conditions:<h5>
+				<h6>Meet one of the following:</h6>
 				<ul>
-					<li>post amount goes here posts</li>
-					<li>plugin amount goes here plugins</li>
-					<li>donation amount goes here amount</li>
+					<li>Have at least 500 posts on the Bukkit Forums.</li>
+					<li>Have made at least 2 plugins.</li>
 				</ul>
+				<h6>Meet all of the following as well:</h6>
+				<ul>
+					<li>Have a premium Minecraft account.</li>
+					<li>Have a valid Bukkit account</li>
+				</ul>
+				<h6>These will all be verified!</h6>
+				<?php 
+					if($_GET['e'] == 1) { ?><div class="alert alert-error">You need to fill in your Minecraft Username!</div><?php }
+					if($_GET['e'] == 2) { ?><div class="alert alert-error">You need to fill in your Bukkit Username!</div><?php }
+					if($_GET['e'] == 3) { ?><div class="alert alert-error">Your Minecraft username must be premium!</div><?php }
+				?>
 				<form class="applyForm" action="applyScript.php" method="POST">
 					<fieldset>
 						<legend>Apply</legend>
 						<label>Username: </label>
-						<input type="text" placeholder="Minecraft Username" />
-						<label>Link to Bukkit Profile:</label>
-						<input type="text" placeholder="Bukkit Link" />
+						<input type="text" name="minecraft" placeholder="Your username in Minecraft" />
+						<label>Bukkit Name:</label>
+						<input type="text" name="bukkit" placeholder="Your username on Bukkit" />
 						</br>
 						<button type="submit" class="btn btn-success">Submit</button>
 					</fieldset>
