@@ -66,12 +66,15 @@
 		header('Location: apply.php?e=4');
 		die();
 	}
-	if($posts < 800) {
-		header('Location: apply.php?e=5');
-		die();
+	$minimum = false;
+	if($posts > 800) {
+		$minimum = true;
 	}
 	$plugins = getPluginCount($bukkit,getID($bukkit));
-	if($plugins < 2) {
+	if($plugins > 2) {
+		$minimum = true;
+	}
+	if($minimum = false) {
 		header('Location: apply.php?e=5');
 		die();
 	}
