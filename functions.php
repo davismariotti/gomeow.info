@@ -4,6 +4,7 @@ function headIncludes() {
 	?>
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="//netdna.bootstrapcdn.com/bootswatch/2.3.0/cerulean/bootstrap.min.css" rel="stylesheet">
 		<link href="css/main.css" rel="stylesheet">
 		<script type = "text/javascript" src = "http://code.jquery.com/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>

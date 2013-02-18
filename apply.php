@@ -15,7 +15,7 @@
 				<div style='text-align: center;'>
 					<img src="http://forums.bukkit.org/logo.png"></img>
 					<h3>Community Server</h6>
-					<a href="#requirements" role="button" class="btn btn-success" data-toggle="modal" style = "margin-left: 16px;"><i class = "icon-info-sign"></i>Application Requirements</a>
+					<a href="#requirements" role="button" class="btn btn-success" data-toggle="modal" style = "margin-left: 16px;"><i class = "icon-info-sign"></i> Application Requirements</a>
 				</div>
 				<br />
 				<?php 
@@ -44,7 +44,7 @@
 		<!-- Modal -->
 		<div id="requirements" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
 				<h3 id="myModalLabel">Application Requirements</h3>
 			</div>
 			<div class="modal-body">
