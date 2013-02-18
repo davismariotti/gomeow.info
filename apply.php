@@ -24,7 +24,7 @@
 					if($_GET['e'] == 3) { ?><div class="alert alert-error">Your Minecraft username must be premium!</div><?php }
 					if($_GET['e'] == 4) { ?><div class="alert alert-error">Your Bukkit username must be valid!</div><?php }
 					if($_GET['e'] == 5) { ?><div class="alert alert-error">You don't have the minimum number of posts/plugins!</div><?php }
-					if($_GET['e'] == 6) { ?><div class="alert alert-error">An application has already been submitted with that Minecraft/Bukkit.<br>
+					if($_GET['e'] == 6) { ?><div class="alert alert-error">An application has already been submitted with that Minecraft/Bukkit username.<br>
 					If this was an error, <a href='contact.php'>contact gomeow.</a></div><?php }
 					if($_GET['s'] == 1) { ?><div class="alert alert-success">Success!</div><?php }
 				?>
