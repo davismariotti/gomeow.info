@@ -31,7 +31,7 @@
 	define( 'MQ_SERVER_ADDR', '216.244.83.139' );
 	define( 'MQ_SERVER_PORT', 25605 );
 	define( 'MQ_SERVER_PASS', 'passwordtest' );
-	define( 'MQ_TIMEOUT', 2 );
+	define( 'MQ_TIMEOUT', 5 );
 	
 	require 'MinecraftQuery/MinecraftRcon.class.php';
 	
