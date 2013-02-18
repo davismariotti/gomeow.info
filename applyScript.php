@@ -1,4 +1,14 @@
 <?php
+	//require("functions.php");
+	include("../private/config.php");
+
+	function connectDB($user, $pass, $db) {
+		try {	
+			return(new PDO("mysql:host=localhost;dbname=" . $db . ";charset=utf8", $user, $pass));
+		} catch(PDOException $ex) {
+			return $ex;
+		}
+	}
 	function checkMinecraftPremium($user) {
 		return file_get_contents('http://minecraft.net/haspaid.jsp?user='.$user);
 	}
@@ -78,7 +88,30 @@
 		header('Location: apply.php?e=5');
 		die();
 	}
-	die('Success so far');
+	
+	$db = connectDB($dbUser, $dbPass, $dbName);
+	if ($db instanceof PDOException) {
+		die ($db->getMessage());
+	}
+	
+	$sql = "SELECT * FROM `Applications` WHERE `Minecraft` = :mc OR `Bukkit` = :bk LIMIT 1"; 
+	$stmt = $db->prepare($sql);
+	$stmt->bindParam(':mc', $minecraft);
+	$stmt->bindParam(':bk', $bukkit);
+	$stmt->execute();
+	if($stmt->rowCount() != 0) {
+		header('Location: apply.php?e=6');
+		die('nope');
+	}
+	$sql = "INSERT INTO `Applications`(`Minecraft`, `Bukkit`, `Posts`, `Plugins`) VALUES (:mc,:bk,:posts,:plugins)";
+	$stmt = $db->prepare($sql);
+	$stmt->bindParam(':mc', $minecraft);
+	$stmt->bindParam(':bk', $bukkit);
+	$stmt->bindParam(':posts', $posts);
+	$stmt->bindParam(':plugins', $plugins);
+	$stmt->execute();
+	header('Location: apply.php?s=1');
+	die();
 	
 	
 ?>
