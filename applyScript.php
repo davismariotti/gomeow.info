@@ -112,6 +112,4 @@
 	$stmt->execute();
 	header('Location: apply.php?s=1');
 	die();
-	
-	
 ?>
