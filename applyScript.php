@@ -81,7 +81,7 @@
 		$minimum = true;
 	}
 	$plugins = getPluginCount($bukkit,getID($bukkit));
-	if($plugins > 2) {
+	if($plugins > 2 && $plugins !== false) {
 		$minimum = true;
 	}
 	if($minimum = false) {
