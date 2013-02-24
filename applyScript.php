@@ -126,10 +126,10 @@
 		die();
 	}
 	else {
-		$bukkit = $_POST['bukkit'];
+		$mc = $_POST['minecraft'];
 		$key = $_POST['key'];
 		
-		if($bukkit=="") {
+		if($mc=="") {
 			header('Location: confirm.php?e=1');
 			die();
 		}
@@ -143,18 +143,18 @@
 			die ($db->getMessage());
 		}
 		
-		$sql = "SELECT * FROM `Applications` WHERE `Bukkit` = :bk LIMIT 1"; 
+		$sql = "SELECT * FROM `Applications` WHERE `Minecraft` = :mc LIMIT 1"; 
 		$stmt = $db->prepare($sql);
-		$stmt->bindParam(':bk', $bukkit);
+		$stmt->bindParam(':mc', $mc);
 		$stmt->execute();
 		if($stmt->rowCount() == 0) {
 			header('Location: confirm.php?e=3');
 			die('Not applied');
 		}
 		$row = $stmt->fetch();
-		$sql = "SELECT * FROM `Applications` WHERE `Bukkit` = :bk AND `Activated` = 0 LIMIT 1"; 
+		$sql = "SELECT * FROM `Applications` WHERE `Minecraft` = :mc AND `Activated` = 0 LIMIT 1"; 
 		$stmt = $db->prepare($sql);
-		$stmt->bindParam(':bk', $bukkit);
+		$stmt->bindParam(':mc', $mc);
 		$stmt->execute();
 		if($stmt->rowCount() == 0) {
 			header('Location: confirm.php?e=4');
@@ -165,15 +165,18 @@
 			die('Wrong key.');
 		}
 		
-		$sql = "UPDATE `Applications` SET `Activated` = 1 WHERE `Bukkit` = :bk LIMIT 1"; 
+		$sql = "UPDATE `Applications` SET `Activated` = 1 WHERE `Minecraft` = :mc LIMIT 1"; 
 		$stmt = $db->prepare($sql);
-		$stmt->bindParam(':bk', $bukkit);
+		$stmt->bindParam(':mc', $mc);
 		$stmt->execute();
+		
+		$bukkit = $row['Bukkit'];
+		
+		$message="";
+		sendPM($bukkit,$message);
 		
 		header('Location: confirm.php?s=1');
 		die();
 		
-		$message="";
-		sendPM($bukkit,$message);
 	}
 ?>

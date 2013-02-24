@@ -18,7 +18,7 @@
 					<h3>Community Server</h6>
 				</div>
 				<?php 
-					if($_GET['e'] == 1) { ?><div class="alert alert-error">You need to fill in your Bukkit Username!</div><?php }
+					if($_GET['e'] == 1) { ?><div class="alert alert-error">You need to fill in your Minecraft Username!</div><?php }
 					if($_GET['e'] == 2) { ?><div class="alert alert-error">You need to fill in your Key!</div><?php }
 					if($_GET['e'] == 3) { ?><div class="alert alert-error">You never applied!</div><?php }
 					if($_GET['e'] == 4) { ?><div class="alert alert-error">Your application has already been activated!</div><?php }
@@ -29,7 +29,7 @@
 					<fieldset>
 						<legend>Confirm</legend>
 						<label>Bukkit Name:</label>
-						<input type="text" name="bukkit" <?php echo("value=\"".$name."\""); ?>placeholder="Your username on Bukkit" />
+						<input type="text" name="minecraft" value=<?php echo("\"".$name."\""); ?> placeholder="Your username in Minecraft" />
 						<label>Confirm Key:</label>
 						<input type="text" name="key" <?php echo("value=\"".$key."\""); ?>placeholder="Your activation key" />
 						<input type="hidden" name="method" value="confirm" />
