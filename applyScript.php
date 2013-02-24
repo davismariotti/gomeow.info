@@ -9,6 +9,9 @@
 			return $ex;
 		}
 	}
+	function sendPM($user,$message) {
+	
+	}
 	function checkMinecraftPremium($user) {
 		return file_get_contents('http://minecraft.net/haspaid.jsp?user='.$user);
 	}
@@ -54,62 +57,128 @@
 		$url = 'http://forums.bukkit.org/members/'.$user.".".$id;
 		$json = file_get_contents('http://tools.bukkit.org/associt/api/users_have_projects/?user_list='.$id);
 		$json = json_decode($json, true);
+		if(!$json[$id]['associated']) {
+			return 0;
+		}
 		return (int) $json[$id]['project_count'];
 	}
-	$minecraft = $_POST['minecraft'];
-	$bukkit = $_POST['bukkit'];
-	if(!isset($bukkit) || is_null($bukkit) || $minecraft=='') {
-		header('Location: apply.php?e=1');
+	if($_POST['method']!="confirm") {	
+		$minecraft = $_POST['minecraft'];
+		$bukkit = $_POST['bukkit'];
+		if(!isset($bukkit) || is_null($bukkit) || $minecraft=='') {
+			header('Location: apply.php?e=1');
+			die();
+		}
+		if(!isset($minecraft) || is_null($minecraft) || $bukkit=='') {
+			header('Location: apply.php?e=2');
+			die();
+		}
+		
+		if(checkMinecraftPremium($minecraft) == 'false') {
+			header('Location: apply.php?e=3');
+			die();
+		}
+		$posts = getPosts($bukkit);
+		if(is_null($posts)) {
+			header('Location: apply.php?e=4');
+			die();
+		}
+		$minimum = false;
+		if($posts > 799) {
+			$minimum = true;
+		}
+		$plugins = getPluginCount($bukkit,getID($bukkit));
+		if($plugins > 2 && $plugins !== false) {
+			$minimum = true;
+		}
+		if($minimum = false) {
+			header('Location: apply.php?e=5');
+			die();
+		}
+		
+		$db = connectDB($dbUser, $dbPass, $dbName);
+		if ($db instanceof PDOException) {
+			die ($db->getMessage());
+		}
+		
+		$sql = "SELECT * FROM `Applications` WHERE `Minecraft` = :mc OR `Bukkit` = :bk LIMIT 1"; 
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam(':mc', $minecraft);
+		$stmt->bindParam(':bk', $bukkit);
+		$stmt->execute();
+		if($stmt->rowCount() != 0) {
+			header('Location: apply.php?e=6');
+			die('nope');
+		}
+		$sql = "INSERT INTO `Applications`(`Minecraft`, `Bukkit`, `Posts`, `Plugins`,`Approved`,`Key`,`Activated`) VALUES (:mc,:bk,:posts,:plugins,0,:key,0)";
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam(':mc', $minecraft);
+		$stmt->bindParam(':bk', $bukkit);
+		$stmt->bindParam(':posts', $posts);
+		$stmt->bindParam(':plugins', $plugins);
+		$stmt->bindParam(':key', uniqid());
+		$stmt->execute();
+		
+		//$message = "";
+		
+		//sendPM($bukkit,$message);
+		header('Location: apply.php?s=1');
 		die();
 	}
-	if(!isset($minecraft) || is_null($minecraft) || $bukkit=='') {
-		header('Location: apply.php?e=2');
+	else {
+		$bukkit = $_POST['bukkit'];
+		$key = $_POST['key'];
+		
+		if($bukkit=="") {
+			header('Location: confirm.php?e=1');
+			die();
+		}
+		if($key=="") {
+			header('Location: confirm.php?e=2');
+			die();
+		}
+		
+		$db = connectDB($dbUser, $dbPass, $dbName);
+		if ($db instanceof PDOException) {
+			die ($db->getMessage());
+		}
+		
+		$sql = "SELECT * FROM `Applications` WHERE `Bukkit` = :bk LIMIT 1"; 
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam(':bk', $bukkit);
+		$stmt->execute();
+		if($stmt->rowCount() == 0) {
+			header('Location: confirm.php?e=3');
+			die('Not applied');
+		}
+		$sql = "SELECT * FROM `Applications` WHERE `Bukkit` = :bk AND `Activated` = 0 LIMIT 1"; 
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam(':bk', $bukkit);
+		$stmt->execute();
+		if($stmt->rowCount() == 0) {
+			header('Location: confirm.php?e=4');
+			die('Already activated.');
+		}
+		$sql = "SELECT * FROM `Applications` WHERE `Bukkit` = :bk LIMIT 1"; 
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam(':bk', $bukkit);
+		$stmt->execute();
+		$row = $stmt->fetch();
+		
+		if($row['Key']!=$key) {
+			header('Location: confirm.php?e=5');
+			die('Wrong key.');
+		}
+		
+		$sql = "UPDATE `Applications` SET `Activated` = 1 WHERE `Bukkit` = :bk LIMIT 1"; 
+		$stmt = $db->prepare($sql);
+		$stmt->bindParam(':bk', $bukkit);
+		$stmt->execute();
+		
+		header('Location: confirm.php?s=1');
 		die();
+		
+		$message="";
+		sendPM($bukkit,$message);
 	}
-	
-	if(checkMinecraftPremium($minecraft) == 'false') {
-	 	header('Location: apply.php?e=3');
-	 	die();
-	}
-	$posts = getPosts($bukkit);
-	if(is_null($posts)) {
-		header('Location: apply.php?e=4');
-		die();
-	}
-	$minimum = false;
-	if($posts > 800) {
-		$minimum = true;
-	}
-	$plugins = getPluginCount($bukkit,getID($bukkit));
-	if($plugins > 2 && $plugins !== false) {
-		$minimum = true;
-	}
-	if($minimum = false) {
-		header('Location: apply.php?e=5');
-		die();
-	}
-	
-	$db = connectDB($dbUser, $dbPass, $dbName);
-	if ($db instanceof PDOException) {
-		die ($db->getMessage());
-	}
-	
-	$sql = "SELECT * FROM `Applications` WHERE `Minecraft` = :mc OR `Bukkit` = :bk LIMIT 1"; 
-	$stmt = $db->prepare($sql);
-	$stmt->bindParam(':mc', $minecraft);
-	$stmt->bindParam(':bk', $bukkit);
-	$stmt->execute();
-	if($stmt->rowCount() != 0) {
-		header('Location: apply.php?e=6');
-		die('nope');
-	}
-	$sql = "INSERT INTO `Applications`(`Minecraft`, `Bukkit`, `Posts`, `Plugins`) VALUES (:mc,:bk,:posts,:plugins)";
-	$stmt = $db->prepare($sql);
-	$stmt->bindParam(':mc', $minecraft);
-	$stmt->bindParam(':bk', $bukkit);
-	$stmt->bindParam(':posts', $posts);
-	$stmt->bindParam(':plugins', $plugins);
-	$stmt->execute();
-	header('Location: apply.php?s=1');
-	die();
 ?>

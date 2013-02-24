@@ -50,11 +50,11 @@
 			throw new MinecraftRconException("Got command result, but it's empty.");
 		}
 		
-		//echo HTMLSpecialChars($Data);
+		echo HTMLSpecialChars($Data);
 	}
 	catch( MinecraftRconException $e )
 	{
-		header('Location: approve.php?pw='.$whitelistpassword);
+		header('Location: approve.php?pw='.$whitelistpassword/'&e=1');
 		die('Error');
 	}
 	$Rcon->Disconnect();
