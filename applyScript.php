@@ -151,6 +151,7 @@
 			header('Location: confirm.php?e=3');
 			die('Not applied');
 		}
+		$row = $stmt->fetch();
 		$sql = "SELECT * FROM `Applications` WHERE `Bukkit` = :bk AND `Activated` = 0 LIMIT 1"; 
 		$stmt = $db->prepare($sql);
 		$stmt->bindParam(':bk', $bukkit);
@@ -159,12 +160,6 @@
 			header('Location: confirm.php?e=4');
 			die('Already activated.');
 		}
-		$sql = "SELECT * FROM `Applications` WHERE `Bukkit` = :bk LIMIT 1"; 
-		$stmt = $db->prepare($sql);
-		$stmt->bindParam(':bk', $bukkit);
-		$stmt->execute();
-		$row = $stmt->fetch();
-		
 		if($row['Key']!=$key) {
 			header('Location: confirm.php?e=5');
 			die('Wrong key.');
