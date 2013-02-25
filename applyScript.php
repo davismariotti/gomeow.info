@@ -9,16 +9,22 @@
 		}
 	}
 	function sendPM($recipients, $title, $message) {
+
+		$post = array(
+		'cmd' => 'login',
+		'username' => $bktUsername,
+		'password' => $bktPassword);
+
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, 'http://forums.bukkit.org/forumrunner/request.php');
-		curl_setopt ($ch, CURLOPT_POST, 1);
-		curl_setopt ($ch, CURLOPT_POSTFIELDS, "cmd=login&username=".$bktUsername."&password=".$bktPassword);
-		curl_setopt ($ch, CURLOPT_COOKIEJAR, 'cookie.txt');
-		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-		$store = curl_exec ($ch);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+		curl_setopt($ch, CURLOPT_COOKIEJAR, 'cookie.txt');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$store = curl_exec($ch);
 		curl_setopt($ch, CURLOPT_URL, 'http://forums.bukkit.org/forumrunner/request.php');
-		$content = curl_exec ($ch);
-		curl_close ($ch); 
+		$content = curl_exec($ch);
+		curl_close($ch); 
 		
 		$post = array(
 		'cmd' => 'start_conversation',
@@ -29,14 +35,14 @@
 		
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, 'http://forums.bukkit.org/forumrunner/request.php');
-		curl_setopt ($ch, CURLOPT_POST, 1);
-		curl_setopt ($ch, CURLOPT_POSTFIELDS, $post);
-		curl_setopt ($ch, CURLOPT_COOKIEFILE, 'cookie.txt');
-		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-		$store = curl_exec ($ch);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+		curl_setopt($ch, CURLOPT_COOKIEFILE, 'cookie.txt');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$store = curl_exec($ch);
 		curl_setopt($ch, CURLOPT_URL, 'http://forums.bukkit.org/forumrunner/request.php');
-		$content = curl_exec ($ch);
-		curl_close ($ch); 
+		$content = curl_exec($ch);
+		curl_close($ch); 
 		}
 	function checkMinecraftPremium($user) {
 		return file_get_contents('http://minecraft.net/haspaid.jsp?user='.$user);
