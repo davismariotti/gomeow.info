@@ -1,5 +1,4 @@
 <?php
-	//require("functions.php");
 	include("../private/config.php");
 
 	function connectDB($user, $pass, $db) {
@@ -9,9 +8,36 @@
 			return $ex;
 		}
 	}
-	function sendPM($user,$message) {
-	
-	}
+	function sendPM($recipients, $title, $message) {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'http://forums.bukkit.org/forumrunner/request.php');
+		curl_setopt ($ch, CURLOPT_POST, 1);
+		curl_setopt ($ch, CURLOPT_POSTFIELDS, "cmd=login&username=".$bktUsername."&password=".$bktPassword);
+		curl_setopt ($ch, CURLOPT_COOKIEJAR, 'cookie.txt');
+		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+		$store = curl_exec ($ch);
+		curl_setopt($ch, CURLOPT_URL, 'http://forums.bukkit.org/forumrunner/request.php');
+		$content = curl_exec ($ch);
+		curl_close ($ch); 
+		
+		$post = array(
+		'cmd' => 'start_conversation',
+		'recipients' => $recipients,
+		'title' => $title,
+		'message' => $message,
+		'd' => 1);
+		
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'http://forums.bukkit.org/forumrunner/request.php');
+		curl_setopt ($ch, CURLOPT_POST, 1);
+		curl_setopt ($ch, CURLOPT_POSTFIELDS, $post);
+		curl_setopt ($ch, CURLOPT_COOKIEFILE, 'cookie.txt');
+		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+		$store = curl_exec ($ch);
+		curl_setopt($ch, CURLOPT_URL, 'http://forums.bukkit.org/forumrunner/request.php');
+		$content = curl_exec ($ch);
+		curl_close ($ch); 
+		}
 	function checkMinecraftPremium($user) {
 		return file_get_contents('http://minecraft.net/haspaid.jsp?user='.$user);
 	}
@@ -110,18 +136,21 @@
 			header('Location: apply.php?e=6');
 			die('nope');
 		}
+		$key = uniqid();
 		$sql = "INSERT INTO `Applications`(`Minecraft`, `Bukkit`, `Posts`, `Plugins`,`Approved`,`Key`,`Activated`) VALUES (:mc,:bk,:posts,:plugins,0,:key,0)";
 		$stmt = $db->prepare($sql);
 		$stmt->bindParam(':mc', $minecraft);
 		$stmt->bindParam(':bk', $bukkit);
 		$stmt->bindParam(':posts', $posts);
 		$stmt->bindParam(':plugins', $plugins);
-		$stmt->bindParam(':key', uniqid());
+		$stmt->bindParam(':key', $key);
 		$stmt->execute();
 		
-		//$message = "";
+		$title = "BukkThat Verification";
+		$message = "[b]BukkThat Verification[/b]\n\nYour key: ".$key."\n\nOr visit this link:\nhttp://gomeow.info/confirm.php?name=".$minecraft."&key=".$key;
+		$message .= "\n\nIf this was an error, please contact gomeow";
 		
-		//sendPM($bukkit,$message);
+		sendPM($bukkit, $title, $message);
 		header('Location: apply.php?s=1');
 		die();
 	}
@@ -171,9 +200,9 @@
 		$stmt->execute();
 		
 		$bukkit = $row['Bukkit'];
-		
-		$message="";
-		sendPM($bukkit,$message);
+		$title = "BukkThat Acceptance";
+		$message=""; //Add message here
+		sendPM($bukkit, $title, $message);
 		
 		header('Location: confirm.php?s=1');
 		die();
