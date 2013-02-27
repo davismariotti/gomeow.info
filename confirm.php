@@ -23,7 +23,7 @@
 					if($_GET['e'] == 3) { ?><div class="alert alert-error">You never applied!</div><?php }
 					if($_GET['e'] == 4) { ?><div class="alert alert-error">Your application has already been activated!</div><?php }
 					if($_GET['e'] == 5) { ?><div class="alert alert-error">Your key was not correct!</div><?php }
-					if($_GET['s'] == 1) { ?><div class="alert alert-success">Success!</div><?php }
+					if($_GET['s'] == 1) { ?><div class="alert alert-success">Success! Now just wait for an admin to approve your application and you will be sent a provate message as a success message.</div><?php }
 				?>
 				<form class="applyForm" action="applyScript.php" method="POST">
 					<fieldset>

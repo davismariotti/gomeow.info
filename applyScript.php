@@ -41,9 +41,15 @@
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		$store = curl_exec($ch);
 		curl_setopt($ch, CURLOPT_URL, 'http://forums.bukkit.org/forumrunner/request.php');
+<<<<<<< HEAD
 		$content = curl_exec($ch);
 		curl_close($ch); 
 		}
+=======
+		$content = curl_exec ($ch);
+		curl_close ($ch); 
+	}
+>>>>>>> Do a thing
 	function checkMinecraftPremium($user) {
 		return file_get_contents('http://minecraft.net/haspaid.jsp?user='.$user);
 	}

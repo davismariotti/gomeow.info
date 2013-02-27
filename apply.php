@@ -26,7 +26,7 @@
 					if($_GET['e'] == 5) { ?><div class="alert alert-error">You don't have the minimum number of posts/plugins!</div><?php }
 					if($_GET['e'] == 6) { ?><div class="alert alert-error">An application has already been submitted with that Minecraft/Bukkit username.<br>
 					If this was an error, <a href='contact.php'>contact gomeow.</a></div><?php }
-					if($_GET['s'] == 1) { ?><div class="alert alert-success">Success!</div><?php }
+					if($_GET['s'] == 1) { ?><div class="alert alert-warning alert-block"><b>Success!</b> <br />Now please click the link found in a private message over the Bukkit Forums to complete your application!</div><?php }
 				?>
 				<form class="applyForm" action="applyScript.php" method="POST">
 					<fieldset>

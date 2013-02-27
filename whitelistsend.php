@@ -1,6 +1,36 @@
 <?php
-
 	require('../private/config.php');
+	
+	function sendPM($recipients, $title, $message) {
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'http://forums.bukkit.org/forumrunner/request.php');
+		curl_setopt ($ch, CURLOPT_POST, 1);
+		curl_setopt ($ch, CURLOPT_POSTFIELDS, "cmd=login&username=".$bktUsername."&password=".$bktPassword);
+		curl_setopt ($ch, CURLOPT_COOKIEJAR, 'cookie.txt');
+		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+		$store = curl_exec ($ch);
+		curl_setopt($ch, CURLOPT_URL, 'http://forums.bukkit.org/forumrunner/request.php');
+		$content = curl_exec ($ch);
+		curl_close ($ch); 
+		
+		$post = array(
+		'cmd' => 'start_conversation',
+		'recipients' => $recipients,
+		'title' => $title,
+		'message' => $message,
+		'd' => 1);
+		
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'http://forums.bukkit.org/forumrunner/request.php');
+		curl_setopt ($ch, CURLOPT_POST, 1);
+		curl_setopt ($ch, CURLOPT_POSTFIELDS, $post);
+		curl_setopt ($ch, CURLOPT_COOKIEFILE, 'cookie.txt');
+		curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
+		$store = curl_exec ($ch);
+		curl_setopt($ch, CURLOPT_URL, 'http://forums.bukkit.org/forumrunner/request.php');
+		$content = curl_exec ($ch);
+		curl_close ($ch); 
+	}
 	function connectDB($user, $pass, $db) {
 		try {	
 			return(new PDO("mysql:host=localhost;dbname=" . $db . ";charset=utf8", $user, $pass));
@@ -63,5 +93,11 @@
 	$stmt = $db->prepare($sql);
 	$stmt->bindParam(':user', $user);
 	$stmt->execute();
+	$title = "BukkThat Approval";
+	$message = "You were accepted!\n\n";
+	$message .= "You can now log on to play.bukkthat.com\n\n";
+	$message .= "See you there!";
+	
+	sendPm($user, $title, $message);
 	header('Location: approve.php?pw='.$whitelistpassword);
 ?>

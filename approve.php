@@ -21,7 +21,7 @@
 		$sql = "SELECT * FROM `Applications`";
 	}
 	else {
-		$sql = "SELECT * FROM `Applications` WHERE `Approved` = 0";
+		$sql = "SELECT * FROM `Applications` WHERE `Approved` = 0 AND `Activated` = 1";
 	}
 	$stmt = $db->prepare($sql);
 	$stmt->execute();
@@ -30,7 +30,7 @@
 ?>
 <html>
 	<head>
-		<title>Apply for Bukkit Community Server</title>
+		<title>Approve</title>
 		<?php headIncludes(); ?>
 	</head>
 	<body>
