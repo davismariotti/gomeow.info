@@ -34,7 +34,7 @@
 		<title>Channel: #<?php echo $_GET['channel']; ?></title>
 		<?php headIncludes(); ?>
 	</head>
-	<body>
+	<body onload="loadLink();">
 		<script type="text/javascript">
 			var dates = <?php echo(json_encode(array_reverse($bigArray, true))); ?>;
 
@@ -56,6 +56,7 @@
 					}
 				}
 				document.getElementById("month").innerHTML = string;
+				loadLink();
 			}
 
 			function updateDay() {
@@ -67,17 +68,18 @@
 					dayString = "<option>" + day + "</option>" + dayString;
 				}
 				document.getElementById("day").innerHTML = dayString;
+				loadLink();
 			}
 
-			function goto() {
+			function loadLink() {
 				var year = document.getElementById("year").options[document.getElementById("year").selectedIndex].text;
 				var month = document.getElementById("month").options[document.getElementById("month").selectedIndex].text;
 				var day = document.getElementById("day").options[document.getElementById("day").selectedIndex].text;
-				window.location = "log.php?file=" + "<?php echo $_GET['channel']; ?>" + "_" + year + month + day;
+				$("#link").load("log.php?file=" + "<?php echo $_GET['channel']; ?>" + "_" + year + month + day);
 			}
 		</script>
 		<?php navBar(); ?>
-		<div class="container">
+		<div id="mainLog" class="container">
 			<div class="well mainContent">
 				<form>
 					<fieldset>
@@ -118,7 +120,7 @@
 									</select>
 								</td>
 								<td>
-									<select id="day">
+									<select id="day" onchange="loadLink();">
 										<?php
 											$first = "";
 											asort($bigArray);
@@ -147,8 +149,7 @@
 						</table>
 					</fieldset>
 				</form>
-				<div style="text-align: center;">
-					<button class="btn btn-success" onclick="goto();">GO!</button>
+				<div id="link" class="well">
 				</div>
 			</div>
 		</div>
