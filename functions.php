@@ -20,7 +20,8 @@ function navBar() {
 				<li <?php if($parent == "index.php") { ?>class="active" <?php } ?>><a href="index.php">Home</a></li>
 				<li class="divider-vertical"></li>
 				<li <?php if($parent == "plugins.php") { ?>class="active" <?php } ?>><a href="plugins.php">My Plugins</a></li>
-				<li><a href="#">Put other Link here</a></li>
+				<li class="divider-vertical"></li>
+				<li <?php if($parent == "logs.php") { ?>class="active" <?php } ?>><a href="logs.php">IRC Logs</a></li>
 			</ul>
 		</div>
 	</div>

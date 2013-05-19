@@ -43,6 +43,10 @@ body {
 	right: 20px;
 }
 
+td, th, caption {
+	color: #397439;
+}
+
 .mainContent {
 	min-height: 200px; 
 	position: relative;
