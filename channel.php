@@ -46,7 +46,7 @@
 				for(var month in months) {
 					x = x + 1;
 					var days = months[month];
-					string = "<option>" + month + "</option>" + string;
+					string = string + "<option>" + month + "</option>";
 					var dayString = "";
 					if(x == 1) {
 						for(var day in days) {
