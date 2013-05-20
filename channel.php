@@ -42,6 +42,7 @@
 				var year = document.getElementById("year").options[document.getElementById("year").selectedIndex].text;
 				var months = dates[year];
 				var string = "";
+				var checked = false;
 				var x = 0;
 				for(var month in months) {
 					x = x + 1;
@@ -75,7 +76,12 @@
 				var year = document.getElementById("year").options[document.getElementById("year").selectedIndex].text;
 				var month = document.getElementById("month").options[document.getElementById("month").selectedIndex].text;
 				var day = document.getElementById("day").options[document.getElementById("day").selectedIndex].text;
-				$("#link").load("log.php?file=" + "<?php echo $_GET['channel']; ?>" + "_" + year + month + day);
+				checked = document.getElementById("reverse").checked;
+				if(checked) {
+					$("#link").load("log.php?file=" + "<?php echo $_GET['channel']; ?>" + "_" + year + month + day + "&reverse=false");
+				} else {
+					$("#link").load("log.php?file=" + "<?php echo $_GET['channel']; ?>" + "_" + year + month + day);
+				}
 			}
 		</script>
 		<?php navBar(); ?>
@@ -148,8 +154,9 @@
 							</tr>
 						</table>
 					</fieldset>
+					<input id="reverse" type="checkbox" onchange="loadLink();" checked> Reverse?
 				</form>
-				<div id="link" class="well">
+				<div id="link">
 				</div>
 			</div>
 		</div>
