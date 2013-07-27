@@ -168,7 +168,7 @@
 				</form>
 				<div id="link">
 				</div>
-				<a name="bottom"></a>
+				<a name="b"></a>
 			</div>
 		</div>
 	</body>
