@@ -31,6 +31,16 @@
 ?>
 <html>
 	<head>
+		<script type="text/javascript">
+			function jumpToBottom() {
+				var urllocation = location.href;
+				if(urllocation.indexOf("#b") > -1){
+					window.location.hash="b";
+				} else {
+				return false;
+				}
+			}
+		</script>
 		<title>Channel: #<?php echo $_GET['channel']; ?></title>
 		<?php headIncludes(); ?>
 	</head>
@@ -40,13 +50,13 @@
 
 			function updateMonth() {
 				var year = document.getElementById("year").options[document.getElementById("year").selectedIndex].text;
-				var months = dates[year];
+				var months = dates[year].sort();
 				var string = "";
 				var checked = false;
 				var x = 0;
 				for(var month in months) {
 					x = x + 1;
-					var days = months[month];
+					var days = months[month].sort();
 					string = string + "<option>" + month + "</option>";
 					var dayString = "";
 					if(x == 1) {
@@ -63,7 +73,7 @@
 			function updateDay() {
 				var year = document.getElementById("year").options[document.getElementById("year").selectedIndex].text;
 				var month = document.getElementById("month").options[document.getElementById("month").selectedIndex].text;
-				var days = dates[year][month];
+				var days = dates[year][month].sort();
 				var dayString = "";
 				for(var day in days) {
 					dayString = "<option>" + day + "</option>" + dayString;
@@ -154,10 +164,11 @@
 							</tr>
 						</table>
 					</fieldset>
-					<input id="reverse" type="checkbox" onchange="loadLink();" checked> Reverse?
+					<input id="reverse" type="checkbox" onchange="loadLink();"> Reverse? <a class="btn btn-success" href="#b">Jump to bottom</a>
 				</form>
 				<div id="link">
 				</div>
+				<a name="b"></a>
 			</div>
 		</div>
 	</body>
