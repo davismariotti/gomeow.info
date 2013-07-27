@@ -164,7 +164,7 @@
 							</tr>
 						</table>
 					</fieldset>
-					<input id="reverse" type="checkbox" onchange="loadLink();"> Reverse?
+					<input id="reverse" type="checkbox" onchange="loadLink();"> Reverse? <a class="btn btn-success" href="#b">Jump to bottom</a>
 				</form>
 				<div id="link">
 				</div>
