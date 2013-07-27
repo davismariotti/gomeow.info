@@ -37,7 +37,7 @@
 							if(startsWith($value, ".") == false and startsWith($value, "#") == true) {
 								?>
 								<tr><td><?php echo $value; ?></td>
-								<td><a class="btn btn-success" href="channel.php?channel=<?php echo substr($value, 1); ?>">Click me</a></td></tr>
+								<td><a class="btn btn-success" href="channel.php?channel=<?php echo substr($value, 1); ?>#b">Click me</a></td></tr>
 								<?php
 							}
      		 			}
