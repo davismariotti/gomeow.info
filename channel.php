@@ -86,7 +86,6 @@
 				var year = document.getElementById("year").options[document.getElementById("year").selectedIndex].text;
 				var month = document.getElementById("month").options[document.getElementById("month").selectedIndex].text;
 				var day = document.getElementById("day").options[document.getElementById("day").selectedIndex].text;
-				checked = document.getElementById("reverse").checked;
 				$("#link").load("log.php?file=" + "<?php echo $_GET['channel']; ?>" + "_" + year + month + day);
 
 				jumpToBottom();
