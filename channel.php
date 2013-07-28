@@ -37,15 +37,6 @@
 	<body onload="loadLink();">
 		<script type="text/javascript">
 
-			function jumpToBottom() {
-				var urllocation = location.href;
-				if(urllocation.indexOf("#b") > -1){
-					window.location.hash="b";
-				} else {
-				return false;
-				}
-			}
-
 			var dates = <?php echo(json_encode(array_reverse($bigArray, true))); ?>;
 
 			function updateMonth() {
@@ -87,8 +78,7 @@
 				var month = document.getElementById("month").options[document.getElementById("month").selectedIndex].text;
 				var day = document.getElementById("day").options[document.getElementById("day").selectedIndex].text;
 				$("#link").load("log.php?file=" + "<?php echo $_GET['channel']; ?>" + "_" + year + month + day);
-
-				jumpToBottom();
+				window.location.hash="b";
 			}
 		</script>
 		<?php navBar(); ?>
