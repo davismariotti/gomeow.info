@@ -31,8 +31,6 @@
 ?>
 <html>
 	<head>
-		<script type="text/javascript">
-		</script>
 		<title>Channel: #<?php echo $_GET['channel']; ?></title>
 		<?php headIncludes(); ?>
 	</head>
