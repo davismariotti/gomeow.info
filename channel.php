@@ -32,6 +32,13 @@
 <html>
 	<head>
 		<script type="text/javascript">
+		</script>
+		<title>Channel: #<?php echo $_GET['channel']; ?></title>
+		<?php headIncludes(); ?>
+	</head>
+	<body onload="loadLink();">
+		<script type="text/javascript">
+
 			function jumpToBottom() {
 				var urllocation = location.href;
 				if(urllocation.indexOf("#b") > -1){
@@ -40,12 +47,7 @@
 				return false;
 				}
 			}
-		</script>
-		<title>Channel: #<?php echo $_GET['channel']; ?></title>
-		<?php headIncludes(); ?>
-	</head>
-	<body onload="loadLink();">
-		<script type="text/javascript">
+
 			var dates = <?php echo(json_encode(array_reverse($bigArray, true))); ?>;
 
 			function updateMonth() {
@@ -87,11 +89,9 @@
 				var month = document.getElementById("month").options[document.getElementById("month").selectedIndex].text;
 				var day = document.getElementById("day").options[document.getElementById("day").selectedIndex].text;
 				checked = document.getElementById("reverse").checked;
-				if(checked) {
-					$("#link").load("log.php?file=" + "<?php echo $_GET['channel']; ?>" + "_" + year + month + day + "&reverse=false");
-				} else {
-					$("#link").load("log.php?file=" + "<?php echo $_GET['channel']; ?>" + "_" + year + month + day);
-				}
+				$("#link").load("log.php?file=" + "<?php echo $_GET['channel']; ?>" + "_" + year + month + day);
+
+				jumpToBottom();
 			}
 		</script>
 		<?php navBar(); ?>
@@ -164,7 +164,7 @@
 							</tr>
 						</table>
 					</fieldset>
-					<input id="reverse" type="checkbox" onchange="loadLink();"> Reverse? <a class="btn btn-success" href="#b">Jump to bottom</a>
+					<a class="btn btn-success" href="#b">Jump to bottom</a>
 				</form>
 				<div id="link">
 				</div>
