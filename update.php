@@ -46,8 +46,10 @@ if ($zip->open('master.zip') === TRUE) {
     recurse_copy(getcwd() . "/gomeow.info-master/", getcwd());
     unlink("master.zip");
     rmdir_recursive(getcwd() . "/gomeow.info-master/");
-    file_put_contents("logs/gitlog.txt", "\n" . date("Y-m-d H:i:s") . ": Successful deploy from $ip", FILE_APPEND | LOCK_EX);   
+    file_put_contents("logs/gitlog.txt", "\n" . date("Y-m-d H:i:s") . ": Successful deploy from $ip", FILE_APPEND | LOCK_EX);
+    die("Successful deploy from $ip");
 } else {
     file_put_contents("logs/gitlog.txt", "\n" . date("Y-m-d H:i:s") . ": FAILED deploy from $ip", FILE_APPEND | LOCK_EX);
+    die("Failed deploy from $ip");
 }
 ?>
