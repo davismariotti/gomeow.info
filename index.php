@@ -93,7 +93,7 @@
 		<?php navBar(); ?>
 		<div class="container">
 			<div class="well mainContent">
-			<img class="thumbnail img-gomeow" src = "files/90728305.jpg" width = "180" height = "180" />
+			<img class="thumbnail img-gomeow" src = "https://files.gomeow.info/90728305.jpg" width = "180" height = "180" />
 
 				<h1>GOMEOW!</h1>
 				<p>I am gomeow. Inspector gomeow.</p>
